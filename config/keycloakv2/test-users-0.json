@@ -1,0 +1,103 @@
+{
+  "realm" : "test",
+  "users" : [ {
+    "id" : "ae074c80-612a-4ff1-849f-6b30ee622ca2",
+    "createdTimestamp" : 1654612383392,
+    "username" : "test1",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Test",
+    "lastName" : "User",
+    "email" : "test1@example.com",
+    "credentials" : [ {
+      "id" : "5e663ae7-5931-4a52-8610-156455b84f86",
+      "type" : "password",
+      "createdDate" : 1654691826729,
+      "secretData" : "{\"value\":\"zs0QEDt77QudmE/N6D+Ba9BEiHWRLv56VRQhAJw+DxDx3sKzYwcuhsng2VDKPPdKcHkmsPIA26IatwRUqiOJ3w==\",\"salt\":\"MuqWjkG4lT5Xfzv362b+Kw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-test" ],
+    "clientConsents" : [ {
+      "clientId" : "test-client-id-1",
+      "grantedClientScopes" : [ "profile", "roles", "email" ],
+      "createdDate" : 1654691916940,
+      "lastUpdatedDate" : 1654691916970
+    }, {
+      "clientId" : "test-client-id-2",
+      "grantedClientScopes" : [ "profile", "roles", "email" ],
+      "createdDate" : 1654691995642,
+      "lastUpdatedDate" : 1654691995655
+    } ],
+    "notBefore" : 1654699778,
+    "groups" : [ "/Test1" ]
+  }, {
+    "id" : "269ce280-8005-4dd5-bb0c-05890f6a3e9d",
+    "createdTimestamp" : 1654612458964,
+    "username" : "test2",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Test",
+    "lastName" : "User",
+    "email" : "test2@example.com",
+    "credentials" : [ {
+      "id" : "b0486c3c-891e-4461-bc75-d4607c8b1fec",
+      "type" : "password",
+      "createdDate" : 1654612468339,
+      "secretData" : "{\"value\":\"RFqePA0gtD8SMyXvOasulr0JNrqn3S7TC8t4CKJs32ACVssmYkBF6UQaxl0PlUbSYQFJUTPs/TqRUD4Etp+MXw==\",\"salt\":\"QRZKwzPnnjnT/Ffsvq3IRg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-test" ],
+    "clientConsents" : [ {
+      "clientId" : "test-client-id-1",
+      "grantedClientScopes" : [ "profile", "roles", "email" ],
+      "createdDate" : 1654699800110,
+      "lastUpdatedDate" : 1654699800122
+    }, {
+      "clientId" : "test-client-id-2",
+      "grantedClientScopes" : [ "profile", "roles", "email" ],
+      "createdDate" : 1654875313174,
+      "lastUpdatedDate" : 1654875313185
+    } ],
+    "notBefore" : 1654700053,
+    "groups" : [ "/Test2" ]
+  }, {
+    "id" : "24bd8c5c-7251-4c31-bf12-54f72a69dfb7",
+    "createdTimestamp" : 1654875192069,
+    "username" : "test3",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "User3",
+    "lastName" : "Test",
+    "email" : "test3@example.com",
+    "credentials" : [ {
+      "id" : "2a0bd43a-2dbb-4712-94c9-a5227b6b1f2d",
+      "type" : "password",
+      "createdDate" : 1654875201945,
+      "secretData" : "{\"value\":\"2pSXEGvgi1KPMNpsqsF7pm528G89UKvgquxMDDQeC8GJwDaNfvj7tjhYd4u+5Lnx+s9vlgKaQX5Wv4cBWI4KxQ==\",\"salt\":\"isPX9kkvK+D3UZ+52VmFQA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-test" ],
+    "clientConsents" : [ {
+      "clientId" : "test-client-id-1",
+      "grantedClientScopes" : [ "profile", "roles", "email" ],
+      "createdDate" : 1654875259488,
+      "lastUpdatedDate" : 1654875259503
+    }, {
+      "clientId" : "test-client-id-2",
+      "grantedClientScopes" : [ "profile", "roles", "email" ],
+      "createdDate" : 1654876422921,
+      "lastUpdatedDate" : 1654876422942
+    } ],
+    "notBefore" : 0,
+    "groups" : [ "/Test1", "/Test2" ]
+  } ]
+}

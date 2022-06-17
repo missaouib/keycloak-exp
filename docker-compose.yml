@@ -1,0 +1,88 @@
+version: '3.7'
+
+services:
+  postgres:
+    restart: unless-stopped
+    image: postgres:latest
+    environment:
+      POSTGRES_HOST: "${POSTGRES_HOST-postgres}"
+      PGPORT: "${POSTGRES_PORT-5432}"
+      POSTGRES_PORT: "${POSTGRES_PORT-5432}"
+      POSTGRES_DB: "${POSTGRES_DB-keycloak}"
+      POSTGRES_USER: "${POSTGRES_USER-keycloak}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD-keycloak}"
+      PGPASSWD: "${PGPASSWD-keycloak}"
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+    ports:
+      - 127.0.0.1:${POSTGRESQL_LOCAL_PORT:-9438}:5432
+
+  keycloak:
+    restart: unless-stopped
+    build:
+      context: "./keycloak"
+      dockerfile: "Dockerfile"
+      args:
+        - DB_VENDOR=POSTGRES
+        - DB_ADDR=${DB_ADDR-postgres}
+        - DB_PORT=${DB_PORT-5432}
+        - DB_DATABASE=${DB_DATABASE-keycloak}
+        - DB_USER=${DB_USER-keycloak}
+        - DB_PASSWORD=${DB_PASSWORD-keycloak}
+        - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN-kadmin}
+        - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD-kpasswd}    
+        - PROXY_ADDRESS_FORWARDING="false"
+    environment:
+      DB_VENDOR: "POSTGRES"
+      DB_ADDR: "${DB_ADDR-postgres}"
+      DB_PORT: "${DB_PORT-5432}"
+      DB_DATABASE: "${DB_DATABASE-keycloak}"
+      DB_USER: "${DB_USER-keycloak}"
+      DB_PASSWORD: "${DB_PASSWORD-keycloak}"
+
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+    volumes:
+      - /tmp:/tmp
+      - ./config/keycloak:/config
+      - ./config/keycloakv2:/config-v2
+      
+  oidc-tester1:
+    image: registry.gitlab.com/guenoledc-perso/idp-oidc-tester:latest
+    ports:
+      - 127.0.0.1:9091:80
+    depends_on:
+      - keycloak
+    links:
+      - keycloak:keycloak.local
+    volumes:
+      - ./client/idp.conf.1:/data/.idp-conf
+      - ./client/fix/session-middlewares.js:/data/usecase/session-middlewares.js
+    environment:
+      EXTERNAL_OWN_URL: "http://client1.local:9091"
+      NODE_ENV: "development"
+      CACHE_IN_MEMORY: "true"
+
+
+  oidc-tester2:
+    image: registry.gitlab.com/guenoledc-perso/idp-oidc-tester:latest
+    ports:
+      - 127.0.0.1:9092:80
+    depends_on:
+      - keycloak
+    links:
+      - keycloak:keycloak.local
+    volumes:
+      - ./client/idp.conf.2:/data/.idp-conf
+      - ./client/fix/session-middlewares.js:/data/usecase/session-middlewares.js
+    environment:
+      EXTERNAL_OWN_URL: "http://client2.local:9092"
+      NODE_ENV: "development"
+      CACHE_IN_MEMORY: "true"
+
+volumes:
+  postgresql:
