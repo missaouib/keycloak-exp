@@ -1,3 +1,9 @@
+Keycloak (v19) demo for Authentication flows.
+
+You can use this demo to test access control on 2 clients application with 3 different users.
+The client applications are plain OIDC tokens debug apps.
+2 Keycloak configuration are available, the second one contained altered authentication flows managing the access control level on applications based on users group membership.
+
 ## 1- Build the stack
 
 ```bash
