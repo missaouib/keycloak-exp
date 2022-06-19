@@ -95,7 +95,7 @@ You have 3 tests users on the test realm (for these debug applications)
 If you want to import the second version of the configuration, with alternative authentication flows, run this command:
 
 ```bash
-# keycloak must not run whil the import occurs
+# keycloak must not run while the import occurs
 docker-compose stop keycloak
 docker-compose \
   run --rm \
@@ -104,10 +104,11 @@ docker-compose \
   " \
    /opt/keycloak/bin/kc.sh \
      --auto-build \
-     export \
+     import \
      --dir /config-v2/ \
      --override true \
   "
+  docker-compose up -d
 ```
 
 Failing at `Unknown option: '--auto-build'` but like he previous one it's still ok.
